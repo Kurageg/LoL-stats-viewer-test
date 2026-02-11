@@ -1,0 +1,17 @@
+# Securely load API keys
+python-dotenv
+
+# Make HTTP requests to Riot API
+requests
+
+# Data analysis (optional, but helpful for player stats)
+pandas
+
+# Image processing (if you want to handle champion icons/minimaps)
+Pillow
+
+# For building a web interface later (optional)
+# flask
+# or
+# fastapi
+# uvicorn

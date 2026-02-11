@@ -205,3 +205,14 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+
+# Riot API & Secrets
+config.json
+secrets.py
+api_key.txt
+
+# Linux temp files
+*~
+*.swp
+*.save
