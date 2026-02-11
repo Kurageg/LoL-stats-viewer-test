@@ -39,19 +39,23 @@ else:
         response = requests.get(url)
         data = response.json()
 
-        # Making a new variable to save only solo queue stats
+        # Making a new variable to save solo/flex queue stats
         RankedSoloStats = data[0] 
+        RankedFlexStats = data[1]
 
+        print("SOLO QUEUE:")
         print(f"Rank: {RankedSoloStats['tier']} {RankedSoloStats['rank']} {RankedSoloStats['leaguePoints']}LP")
         print(f"Wins: {RankedSoloStats['wins']} Losses: {RankedSoloStats['losses']}")
-
+        print("FLEX QUEUE:")
+        print(f"Rank: {RankedFlexStats['tier']} {RankedFlexStats['rank']} {RankedFlexStats['leaguePoints']}LP")
+        print(f"Wins: {RankedFlexStats['wins']} Losses: {RankedFlexStats['losses']}")
         url = f"https://{region}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/{puuid}/top?count=1&api_key={api_key}"
         response = requests.get(url)
         data = response.json()
         bestChamp = data[0]
         searchkey = bestChamp['championId']
         result = find_champion_by_key(champions, searchkey)
-
+        
         print(f"Highest Mastery level on {result['name']}: Level {bestChamp['championLevel']}, {bestChamp['championPoints']} Mastery points ") 
     else:
         print(f"Failed to fetch data: {response.status_code}")
