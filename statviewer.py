@@ -4,23 +4,24 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-api_key = os.geten("RIOT_API_KEY")
+api_key = os.getenv("RIOT_API_KEY")
 
 if not api_key:
     print("Error: RIOT_API_KEY not found in .env file.")
 else:
-    region = "ru1" # Your region
-    summoner_name = "Doublelift" # Your nickname
+    region = "ru" # Your region
+    gameName = "kur4ga" # Your nickname
+    tagLine = "1111"
     
-    url = f"https://{region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summoner_name}"
+    url = f"https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}?api_key={api_key}"
     headers = {
         "X-Riot-Token": api_key
     }
     
-    response = requests.get(url, headers=headers)
+    response = requests.get(url)
 
-    if response.status_status == 200:
+    if response.status_code == 200:
         data = response.json()
-        print(f"Summoner Level: {data['summonerLevel']}")
+        print(f"Summoner Name: {data['gameName']}")
     else:
         print(f"Failed to fetch data: {response.status_code}")
