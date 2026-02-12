@@ -39,16 +39,19 @@ else:
         response = requests.get(url)
         data = response.json()
 
+        if len(data) > 0:
         # Making a new variable to save solo/flex queue stats
-        RankedSoloStats = data[0] 
-        RankedFlexStats = data[1]
+            RankedSoloStats = data[0] 
+            RankedFlexStats = data[1]
 
-        print("SOLO QUEUE:")
-        print(f"Rank: {RankedSoloStats['tier']} {RankedSoloStats['rank']} {RankedSoloStats['leaguePoints']}LP")
-        print(f"Wins: {RankedSoloStats['wins']} Losses: {RankedSoloStats['losses']}")
-        print("FLEX QUEUE:")
-        print(f"Rank: {RankedFlexStats['tier']} {RankedFlexStats['rank']} {RankedFlexStats['leaguePoints']}LP")
-        print(f"Wins: {RankedFlexStats['wins']} Losses: {RankedFlexStats['losses']}")
+            print("SOLO QUEUE:")
+            print(f"Rank: {RankedSoloStats['tier']} {RankedSoloStats['rank']} {RankedSoloStats['leaguePoints']}LP")
+            print(f"Wins: {RankedSoloStats['wins']} Losses: {RankedSoloStats['losses']}")
+            print("FLEX QUEUE:")
+            print(f"Rank: {RankedFlexStats['tier']} {RankedFlexStats['rank']} {RankedFlexStats['leaguePoints']}LP")
+            print(f"Wins: {RankedFlexStats['wins']} Losses: {RankedFlexStats['losses']}")
+        else:
+            print("No ranked stats (Is ranked available?/Have you played ranked before?)")
         url = f"https://{region}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/{puuid}/top?count=1&api_key={api_key}"
         response = requests.get(url)
         data = response.json()
